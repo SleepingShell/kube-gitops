@@ -1,0 +1,12 @@
+#helmOperator:
+#  create: false
+git:
+  url: "git@github.com:sleepingshell/kube-gitops"
+image:
+  repository: docker.io/fluxcd/flux
+  tag: 1.19.0
+registry:
+  rps: 50
+  burst: 50
+memcached:
+  enabled: true
