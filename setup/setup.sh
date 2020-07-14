@@ -9,9 +9,9 @@ kubectl create namespace flux
 echo "Installing flux"
 
 helm repo add fluxcd https://charts.fluxcd.io
+helm repo update
 helm upgrade --install flux --values "$REPO_ROOT"/flux/flux-values.yaml --namespace flux fluxcd/flux
 helm upgrade --install helm-operator --values "$REPO_ROOT"/flux/flux-helm-operator-values.yaml --namespace flux fluxcd/helm-operator
-
 
 FLUX_READY=1
   while [ $FLUX_READY != 0 ]; do
