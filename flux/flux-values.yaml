@@ -2,6 +2,7 @@
 #  create: false
 git:
   url: "git@github.com:sleepingshell/kube-gitops"
+  pollInterval: "2m"
 image:
   repository: docker.io/fluxcd/flux
   tag: 1.19.0
