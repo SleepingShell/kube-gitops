@@ -18,6 +18,8 @@ spec:
     grafana:
       ingress:
         enabled: true
+        hosts:
+          - monitor.in.sleepingshell.com
       dashboards:
         default:
           nginx-dashboard:
