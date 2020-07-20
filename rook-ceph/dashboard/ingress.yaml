@@ -8,9 +8,9 @@ metadata:
 spec:
   tls:
    - hosts:
-     - rook.in.sleepingshell.com
+     - ceph.in.sleepingshell.com
   rules:
-  - host: rook.in.sleepingshell.com
+  - host: ceph.in.sleepingshell.com
     http:
       paths:
       - path: /
