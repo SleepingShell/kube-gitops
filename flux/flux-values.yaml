@@ -11,3 +11,10 @@ registry:
   burst: 50
 memcached:
   enabled: true
+prometheus:
+  enabled: true
+  serviceMonitor:
+    create: true
+    interval: 30s
+    scrapeTimeout: 10s
+    namespace: flux
