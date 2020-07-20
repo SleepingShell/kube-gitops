@@ -1,0 +1,11 @@
+apiVersion: ceph.rook.io/v1
+kind: CephBlockPool
+metadata:
+  name: replicapool-hdd
+  annotations:
+     storageclass.kubernetes.io/is-default-class: "true"
+spec:
+  failureDomain: osd
+  replicated:
+    size: 2
+  deviceClass: hdd
