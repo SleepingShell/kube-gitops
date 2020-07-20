@@ -1,0 +1,13 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: postgresql
+  namespace: harbor
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  releaseName: postgresql
+  chart:
+    repository: https://charts.bitnami.com/bitnami
+    name: postgresql-ha
+    version: v3.4.3
