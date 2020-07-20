@@ -16,5 +16,5 @@ spec:
     expose:
       ingress:
         hosts:
-          core: core.harbor.in.sleepingshell.com
-          notary: notary.harbor.in.sleepingshell.com
+          core: harbor.in.sleepingshell.com
+          notary: notary.in.sleepingshell.com
