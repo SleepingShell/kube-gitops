@@ -22,7 +22,10 @@ spec:
       persistentVolumeClaim:
         registry:
           accessMode: ReadWriteMany
+          storageClass: rook-cephfs
         chartmuseum:
           accessMode: ReadWriteMany
+          storageClass: rook-cephfs
         jobservice:
           accessMode: ReadWriteMany
+          storageClass: rook-cephfs
