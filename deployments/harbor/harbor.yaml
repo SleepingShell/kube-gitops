@@ -18,3 +18,11 @@ spec:
         hosts:
           core: harbor.in.sleepingshell.com
           notary: notary.in.sleepingshell.com
+    persistence:
+      persistentVolumeClaim:
+        registry:
+          accessMode: ReadWriteMany
+        chartmuseum:
+          accessMode: ReadWriteMany
+        jobservice:
+          accessMode: ReadWriteMany
