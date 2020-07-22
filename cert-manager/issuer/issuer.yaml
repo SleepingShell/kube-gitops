@@ -1,7 +1,7 @@
 apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer
 metadata:
-  name: selfsigned-issuer
-  namespace: cert-manager
+  name: ca-issuer
 spec:
-  selfSigned: {}
+  ca:
+    secretName: ca-issuer-keys

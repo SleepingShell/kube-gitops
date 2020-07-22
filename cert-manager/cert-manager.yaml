@@ -25,8 +25,8 @@ spec:
       replicaCount: 1
       extraArgs:
         - --leader-elect=false
-    #prometheus:
-    #  enabled: true
-    #  servicemonitor:
-    #    enabled: true
-    #    namespace: cert-manager
+    prometheus:
+      enabled: true
+      servicemonitor:
+        enabled: true
+        prometheusInstance: monitoring
