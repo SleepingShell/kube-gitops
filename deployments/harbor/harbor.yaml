@@ -18,6 +18,8 @@ spec:
         hosts:
           core: harbor.in.sleepingshell.com
           notary: notary.in.sleepingshell.com
+      tls:
+        secretName: harbor-tls
     persistence:
       persistentVolumeClaim:
         registry:
