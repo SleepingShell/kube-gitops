@@ -36,4 +36,4 @@ spec:
             datasource: Prometheus
     prometheus:
       ingress:
-        enabled: true
+        enabled: false
