@@ -12,7 +12,7 @@ spec:
     name: harbor
     version: v1.4.1
   values:
-    externalURL: https://core.harbor.in.sleepingshell.com
+    externalURL: https://harbor.in.sleepingshell.com
     expose:
       ingress:
         hosts:
