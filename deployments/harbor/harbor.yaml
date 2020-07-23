@@ -16,8 +16,8 @@ spec:
     expose:
       ingress:
         hosts:
-          core: harbor.in.sleepingshell.com
-          notary: notary.in.sleepingshell.com
+          core: core.harbor.in.sleepingshell.com
+          notary: notary.harbor.in.sleepingshell.com
       tls:
         secretName: harbor-tls
     persistence:
