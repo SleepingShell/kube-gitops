@@ -10,7 +10,7 @@ spec:
   releaseName: metallb
   helmVersion: v3
   chart:
-    repository: bitnami/metallb
+    repository: https://charts.bitnami.com/bitnami
     name: metallb
     version: 0.1.21
   values:
