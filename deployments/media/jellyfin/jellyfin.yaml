@@ -27,3 +27,5 @@ spec:
         size: 2000Gi
       tvshows:
         size: 100Gi
+    nodeSelector:
+      storage: ceph #Makes sure to choose the separate server, change this on server upgrade
