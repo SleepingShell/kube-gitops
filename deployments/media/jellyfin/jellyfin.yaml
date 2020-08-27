@@ -16,12 +16,12 @@ spec:
     image:
       tag: latest
     timezone: America/New_York
-    Service:
+    service:
       type: LoadBalancer
+      loadBalancerIP: 10.100.10.220
       port: 80
       annotations:
         metallb.universe.tf/address-pool: public
-      loadBalancerIP: 10.100.10.220
     persistence:
       movies:
         size: 2000Gi
