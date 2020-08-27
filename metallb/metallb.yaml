@@ -29,7 +29,7 @@ spec:
         enabled: true
     configInline:
       address-pools:
-      - name: default
+      - name: public
         protocol: layer2
         addresses:
         - 10.100.10.220-10.100.10.229
