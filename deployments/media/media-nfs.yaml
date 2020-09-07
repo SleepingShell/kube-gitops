@@ -63,7 +63,7 @@ spec:
   - name: media-share
     server:
       accessMode: ReadWrite
-      squash: "all"
+      squash: all
     persistentVolumeClaim:
       claimName: media-data
   annotations:
@@ -87,3 +87,4 @@ spec:
     port: 111
     targetPort: 111
   type: LoadBalancer
+  loadBalancerIP: 10.100.10.221
