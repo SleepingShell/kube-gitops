@@ -1,0 +1,10 @@
+grafana:
+  ingress:
+    annotations:
+      cert-manager.io/issuer: ca-issuer
+    hosts:
+      - monitor.$DOMAIN
+    tls:
+    - hosts:
+      - monitor.$DOMAIN
+  adminPassword: $GRAFANA_PASSWORD
