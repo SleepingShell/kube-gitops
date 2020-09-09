@@ -1,0 +1,74 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: vault
+  namespace: vault
+spec:
+  releaseName: vault
+  rollback:
+    enabled: false
+  chart:
+    repository: https://helm.releases.hashicorp.com
+    name: vault
+    version: v0.7.0
+  values:
+    server:
+      dataStorage:
+        enabled: true
+        storageClass: "rook-ceph-block"
+      #annotations:
+      #  backup.velero.io/backup-volumes: data
+      resources:
+        requests:
+          memory: 512Mi
+          cpu: 250m
+        limits:
+          memory: 4Gi
+      #readinessProbe:
+      #  enabled: true
+      #  path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
+      livenessProbe:
+        enabled: true
+        path: "/v1/sys/health?standbyok=true"
+        initialDelaySeconds: 60
+      
+      auditStorage:
+        enabled: true
+      standalone:
+        enabled: "false"
+
+      ha:
+        enabled: "true"
+        replicas: 3
+        raft:
+          enabled: true
+          setNodeId: true
+          config: |
+            ui = true
+            listener "tcp" {
+              tls_disable = 1
+              address = "[::]:8200"
+              cluster_address = "[::]:8201"
+            }
+            storage "raft" {
+              path = "/vault/data"
+              retry_join {
+                leader_api_addr = "http://vault-0.vault-internal:8200"
+              }
+              retry_join {
+                leader_api_addr = "http://vault-1.vault-internal:8200"
+              }
+              retry_join {
+                leader_api_addr = "http://vault-2.vault-internal:8200"
+              }
+            }
+
+            service_registration "kubernetes" {}
+    ui:
+      enabled: true
+      serviceType: LoadBalancer
+
+
+# https://github.com/billimek/k8s-gitops/tree/master/kube-system
+# https://github.com/ricoberger/vault-secrets-operator
+# https://learn.hashicorp.com/tutorials/vault/kubernetes-raft-deployment-guide
