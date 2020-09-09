@@ -16,8 +16,20 @@ spec:
     version: v9.1.0
   values:
     grafana:
+      deploymentStrategy:
+        type: Recreate
+      #podAnnotations:
+      #  backup.velero.io/backup-volumes: storage
+      persistence:
+        enabled: true
+        storageClassName: "rook-ceph-block"
+        size: 10Gi
+        accessModes:
+        - ReadWriteOnce
+
       ingress:
         enabled: true
+
       plugins:
         - natel-discrete-panel
         - pr0ps-trackmap-panel
@@ -110,6 +122,15 @@ spec:
               url: https://raw.githubusercontent.com/adriankumpf/teslamate/v1.19.4/grafana/dashboards/internal/charge-details.json
             drive-details:
               url: https://raw.githubusercontent.com/adriankumpf/teslamate/v1.19.4/grafana/dashboards/internal/drive-details.json
+      
+      sidecar:
+        datasources:
+          enabled: true
+          defaultDatasourceEnabled: false
+        dashboards:
+          enabled: true
+          searchNamespace: ALL
+    
     prometheus:
       ingress:
         enabled: false

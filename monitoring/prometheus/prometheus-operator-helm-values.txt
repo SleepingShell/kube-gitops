@@ -1,10 +1,11 @@
 grafana:
   ingress:
     annotations:
-      cert-manager.io/issuer: ca-issuer
+      cert-manager.io/cluster-issuer: ca-issuer
     hosts:
       - monitor.$DOMAIN
     tls:
     - hosts:
       - monitor.$DOMAIN
+      secretName: grafana-tls
   adminPassword: $GRAFANA_PASSWORD
