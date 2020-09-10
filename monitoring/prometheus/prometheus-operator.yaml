@@ -15,6 +15,36 @@ spec:
     name: prometheus-operator
     version: v9.1.0
   values:
+    defaultRules:
+      rules:
+        kubeApiserverAvailability: false
+        kubeApiserver: false
+    server:
+      resources:
+        requests:
+          memory: 1500Mi
+          cpu: 25m
+        limits:
+          memory: 2000Mi
+    nodeExporter:
+      serviceMonitor:
+        relabelings:
+        - action: replace
+          regex: (.*)
+          replacement: $1
+          sourceLabels:
+          - __meta_kubernetes_pod_node_name
+          targetLabel: kubernetes_node
+    kubelet:
+      serviceMonitor:
+        metricRelabelings:
+        - action: replace
+          sourceLabels:
+          - node
+          targetLabel: instance
+    kubeStateMetrics:
+      enabled: true
+    
     grafana:
       deploymentStrategy:
         type: Recreate
@@ -142,7 +172,7 @@ spec:
     
     prometheus:
       ingress:
-        enabled: false
+        enabled: true
 
   valuesFrom:
     - secretKeyRef:

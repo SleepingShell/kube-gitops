@@ -9,3 +9,13 @@ grafana:
       - monitor.$DOMAIN
       secretName: grafana-tls
   adminPassword: $GRAFANA_PASSWORD
+prometheus:
+  ingress:
+    annotations:
+      cert-manager.io/cluster-issuer: ca-issuer
+    hosts:
+      - prometheus.$DOMAIN
+    tls:
+    - hosts:
+      - prometheus.$DOMAIN
+      secretName: prometheus-tls
