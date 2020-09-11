@@ -5,8 +5,7 @@ ingress:
     - hosts:
       - teslamate.$DOMAIN
       secretName: teslamate-tls
-  #annotations:
-  #  nginx.ingress.kubernetes.io/auth-url: "https://auth.$DOMAIN/oauth2/auth"
-  #  nginx.ingress.kubernetes.io/auth-signin: https://auth.$DOMAIN/oauth2/start
+  annotations:
+    cert-manager.io/cluster-issuer: ca-issuer
 postgresql:
   postgresqlPassword: $TESLAMATE_DB_PASSWORD
