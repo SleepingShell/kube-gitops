@@ -39,5 +39,8 @@ spec:
         - name: data
           mountPath: /data-local
           existingClaim: media-data
+        - name: transcode
+          mountPath: /transcode
+          existingClaim: media-transcode
     nodeSelector:
       storage: ceph #Makes sure to choose the separate server, change this on server upgrade

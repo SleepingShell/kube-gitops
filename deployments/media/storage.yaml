@@ -10,3 +10,16 @@ spec:
   resources:
     requests:
       storage: 2200Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: media-transcode
+  namespace: media
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: rook-cephfs
+  resources:
+    requests:
+      storage: 500Gi
