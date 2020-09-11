@@ -1,0 +1,13 @@
+nextcloud:
+  host: cloud.$DOMAIN
+  password: $NEXTCLOUD_ADMIN_PASSWORD
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: ca-issuer
+  hosts:
+    - cloud.$DOMAIN
+  tls:
+    - hosts:
+      - cloud.$DOMAIN
+      secretName: nextcloud-tls

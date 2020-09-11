@@ -1,0 +1,23 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: nextcloud
+  namespace: default
+  annotations:
+    fluxcd.io/automated: "true"
+spec:
+  releaseName: nextcloud
+  helmVersion: v3
+  chart:
+    repository: https://nextcloud.github.io/helm/
+    name: nextcloud
+    version: 2.1.0
+  values:
+    metrics:
+      enabled: true
+    persistence:
+      enabled: true
+      size: 1000Gi
+      storageClass: rook-ceph-block
+  valueFileSecrets:
+  - name: "nextcloud-helm-values"
