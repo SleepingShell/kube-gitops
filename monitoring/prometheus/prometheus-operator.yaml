@@ -95,6 +95,15 @@ spec:
             allowUiUpdates: true
             options:
               path: /var/lib/grafana/dashboards/teslamate
+          - name: network
+            ordId: 1
+            folder: network
+            type: file
+            disableDeletion: false
+            editable: true
+            allowUiUpdates: true
+            options:
+              path: /var/lib/grafana/dashboards/network
       
       dashboards:
         default:
