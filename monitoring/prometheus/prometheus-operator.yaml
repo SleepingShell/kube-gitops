@@ -161,6 +161,11 @@ spec:
             url: https://raw.githubusercontent.com/adriankumpf/teslamate/v1.19.4/grafana/dashboards/internal/charge-details.json
           drive-details:
             url: https://raw.githubusercontent.com/adriankumpf/teslamate/v1.19.4/grafana/dashboards/internal/drive-details.json
+        
+        network:
+          speedtest:
+            url: https://raw.githubusercontent.com/billimek/prometheus-speedtest-exporter/master/speedtest-exporter.json
+            datasource: speedtests
     
       sidecar:
         datasources:
@@ -169,6 +174,13 @@ spec:
         dashboards:
           enabled: true
           searchNamespace: ALL
+
+      additionalDataSources:
+      - name: speedtests
+        type: influxdb
+        access: proxy
+        url: http://influxdb:8086
+        database: speedtests
     
     prometheus:
       ingress:
