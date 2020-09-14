@@ -12,14 +12,6 @@ spec:
     name: harbor
     version: v1.4.1
   values:
-    externalURL: https://harbor.in.sleepingshell.com
-    expose:
-      ingress:
-        hosts:
-          core: harbor.in.sleepingshell.com
-          notary: notary.harbor.in.sleepingshell.com
-      tls:
-        secretName: harbor-tls
     persistence:
       persistentVolumeClaim:
         registry:
@@ -31,3 +23,5 @@ spec:
         jobservice:
           accessMode: ReadWriteMany
           storageClass: rook-cephfs
+  valueFileSecrets:
+  - name: "harbor-helm-values"
