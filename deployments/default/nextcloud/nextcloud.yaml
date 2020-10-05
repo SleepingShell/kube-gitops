@@ -11,7 +11,7 @@ spec:
   chart:
     repository: https://nextcloud.github.io/helm/
     name: nextcloud
-    version: 2.1.0
+    version: 2.2.1
   values:
     metrics:
       enabled: true
@@ -26,5 +26,9 @@ spec:
       limits:
         memory: 8Gi
         cpu: "1500m"
+    nextcloud:
+      extraEnv:
+      - name: OVERWRITEPROTOCOL
+        value: https
   valueFileSecrets:
   - name: "nextcloud-helm-values"
