@@ -40,7 +40,7 @@ spec:
         memory: 1024Mi
     osd:
       requests:
-        cpu: 35m
+        cpu: 200m
         memory: 2048Mi
       limits:
         memory: 8192Mi
