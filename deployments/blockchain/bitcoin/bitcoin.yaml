@@ -17,11 +17,11 @@ spec:
         image: jamesob/bitcoind
         resources:
           requests:
-              memory: "4096Mi"
-              cpu: "1500m"
+              memory: "2048Mi"
+              cpu: "250m"
           limits:
             memory: "4096Mi"
-            cpu: "2000m"
+            cpu: "800m"
         volumeMounts:
         - mountPath: /bitcoin/data
           name: bitcoin-data
