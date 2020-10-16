@@ -29,6 +29,5 @@ spec:
       extraEnv:
       - name: OVERWRITEPROTOCOL
         value: https
-      - name: NEXTCLOUD_TRUSTED_DOMAINS
   valueFileSecrets:
   - name: "nextcloud-helm-values"
