@@ -17,8 +17,9 @@ spec:
       enabled: true
     persistence:
       enabled: true
-      size: 1000Gi
-      storageClass: rook-ceph-block
+      #size: 1000Gi
+      #storageClass: rook-ceph-block
+      existingClaim: nextcloud-nextcloud
     resources:
       requests:
         memory: 4Gi
