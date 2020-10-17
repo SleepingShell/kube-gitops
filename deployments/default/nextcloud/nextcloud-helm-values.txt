@@ -12,3 +12,12 @@ ingress:
     - hosts:
       - cloud.$DOMAIN
       secretName: nextcloud-tls
+internalDatabase:
+  enabled: false
+externalDatabase:
+  enabled: true
+  type: postgresql
+  host: postgresql-nextcloud:5432
+  database: nextcloud
+  user: postgres
+  password: $NEXTCLOUD_DB_PASSWORD
