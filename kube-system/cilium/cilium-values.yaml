@@ -1,0 +1,81 @@
+bpf:
+  # -- Enable native IP masquerade support in eBPF
+  masquerade: true
+
+  # -- Configure whether direct routing mode should route traffic via
+  # host stack (true) or directly and more efficiently out of BPF (false) if
+  # the kernel supports it. The latter has the implication that it will also
+  # bypass netfilter in the host namespace.
+  hostRouting: false
+
+# externalIPs is the configuration for ExternalIPs service handling
+externalIPs:
+  # enabled enables ExternalIPs functionality
+  enabled: true
+
+# endpointRoutes enables use of per endpoint routes instead of routing vis
+# the cilium_host interface
+endpointRoutes:
+  enabled: false
+
+# hostServices is the configuration for ClusterIP service handling in host namespace
+hostServices:
+  # enabled enables host reachable functionality
+  enabled: true
+
+# nodePort is the configuration for NodePort service handling
+nodePort:
+  # enabled enables NodePort functionality
+  enabled: true
+
+# masquerade enables masquerading of traffic leaving the node for
+# destinations outside of the cluster.
+masquerade: true
+
+#k8sServiceHost: 10.100.10.98
+#k8sServicePort: 6443
+
+# nativeRoutingCIDR allows to explicitly specify the CIDR for native routing. This
+# value corresponds to the configured cluster-cidr.
+nativeRoutingCIDR: 10.100.10.0/24
+
+# autoDirectNodeRoutes enables installation of PodCIDR routes between worker
+# nodes if worker nodes share a common L2 network segment.
+autoDirectNodeRoutes: true
+# -- Configure the encapsulation configuration for communication between nodes.
+# Possible values:
+#   - disabled
+#   - vxlan (default)
+#   - geneve
+tunnel: disabled
+
+# loadBalancer is the general configuration for service load balancing
+loadBalancer:
+  # algorithm is the name of the load balancing algorithm for backend
+  # selection e.g. random or maglev
+  algorithm: maglev
+  # mode is the operation mode of load balancing for remote backends
+  # e.g. snat, dsr, hybrid
+  mode: dsr
+
+hubble:
+  enabled: true
+  listenAddress: ':4244'
+  metrics:
+    enabled:
+      - dns:query;ignoreAAAA
+      - drop
+      - tcp
+      - flow
+      - port-distribution
+      - icmp
+      - http
+  relay:
+    enabled: true
+  ui:
+    enabled: true
+
+operator:
+  replicas: 1
+  #prometheus:
+  #  enabled: true
