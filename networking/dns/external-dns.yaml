@@ -1,0 +1,21 @@
+#repository: https://charts.bitnami.com/bitnami
+#name: external-dns
+logLevel: debug
+provider: coredns
+coredns:
+  etcdEndpoints: http://etcd:2379
+domainFilters:
+- sleepingshell.com
+createSecret: true
+crd:
+  create: true
+#metrics:
+#  enabled: true
+#  serviceMonitor:
+#    enabled: true
+resources:
+  requests:
+    memory: 250Mi
+    cpu: 25m
+  limits:
+    memory: 500Mi

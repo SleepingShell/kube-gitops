@@ -1,0 +1,14 @@
+#repository: https://charts.bitnami.com/bitnami
+#name: etcd
+statefulset:
+  replicaCount: 1
+auth:
+  rbac:
+    enabled: false
+persistence:
+  enabled: false
+  # size: 8Gi
+#metrics:
+#  enabled: true
+#  serviceMonitor:
+#    enabled: true
