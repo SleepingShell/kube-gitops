@@ -6,13 +6,15 @@ metadata:
   namespace: rook-ceph
 spec:
   cephVersion:
-    image: ceph/ceph:v15.2.4
+    image: ceph/ceph:v15.2
   dataDirHostPath: /var/lib/rook
   mon:
     count: 3
-    allowMultiplePerNode: false
+    allowMultiplePerNode: true
   monitoring:
-    enabled: false
+    enabled: true
+  crashCollector:
+    disable: true
   mgr:
     modules:
     - name: pg_autoscaler
@@ -41,7 +43,7 @@ spec:
     osd:
       requests:
         cpu: 200m
-        memory: 2048Mi
+        memory: 4096Mi
       limits:
         memory: 8192Mi
     rbdmirror:
@@ -51,20 +53,20 @@ spec:
       limits:
         memory: 1024Mi
   storage:
+    nodes:
+      - name: "10.100.10.98"
+        devices:
+          - name: "/dev/hdd-12tb-1"
+          - name: "/dev/hdd-14tb-1"
+          - name: "/dev/hdd-14tb-2"
+          - name: "/dev/ssd-1tb-1"
+          - name: "/dev/ssd-1tb-2"
+          #- name: "/dev/nvme-1tb-2"
     useAllNodes: false
     useAllDevices: false
-    #deviceFilter: 
-    #location: 
     config:
-      #metadataDevice: 
+      metadataDevice: "nvme1n1"
+      #metadataDevice: "nvme-1tb-1"
       osdsPerDevice: "1"
-    nodes:
-      - name: "10.100.10.210"
-        devices:
-          - name: "sda"
-          - name: "sdb"
-          - name: "sdc"
-          - name: "sdd"
-          - name: "sdf"
-          - name: "sdg"
-          - name: "sdh"
+      #walSizeMB: "20000" #I read that WAL is stored with DB if not specified
+      databaseSizeMB: "80000" 
