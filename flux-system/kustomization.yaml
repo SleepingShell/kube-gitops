@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- gotk-components.yaml
+- gotk-sync.yaml
+- helm-repositories/bitnami.yaml
+- helm-repositories/cilium.yaml
+- helm-repositories/coredns.yaml
+- helm-repositories/harbor.yaml
+- helm-repositories/hashicorp.yaml
+- helm-repositories/k8s-at-home.yaml
+- helm-repositories/nextcloud.yaml
+- helm-repositories/rook.yaml
+- helm-repositories/sealed-secrets.yaml
+- helm-repositories/traefik.yaml
