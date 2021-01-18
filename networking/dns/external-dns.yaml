@@ -22,7 +22,7 @@ spec:
     coredns:
       etcdEndpoints: http://etcd:2379
     domainFilters:
-    - sleepingshell.com
+    - homielab.me
     createSecret: true
     crd:
       create: true

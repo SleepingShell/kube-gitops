@@ -24,25 +24,24 @@ spec:
       config:
         enabled: false
         size: 10Mi
-        storageClass: longhorn
+        storageClass: rook-ceph-block
       work:
         enabled: false
-        size: 50Gi
+        size: 30Gi
         skipUninstall: true
-        storageClass: longhorn
+        storageClass: rook-ceph-block
     timezone: "America/New_York"
     replicas: 1
     ingress:
       enabled: true
       annotations:
-        #kubernetes.io/ingress.class: "nginx"
         #kubernetes.io/tls-acme: "true"
         #cert-manager.io/cluster-issuer: "letsencrypt-prod"
       hosts:
-      - adguard.in.sleepingshell.com
+      - adguard.in.homielab.me
       #tls:
       #- hosts:
-      #  - adguard.holthome.net
+      #  - adguard.homielab.me
       #  secretName: adguard-cert
     service:
       type: LoadBalancer
@@ -105,23 +104,15 @@ spec:
           ratelimit_whitelist: []
           refuse_any: true
           upstream_dns:
-          #- '[/holthome.net/]10.43.10.53'
-          #- '[/ryanholt.net/]10.43.10.53'
-          # - '[/bergandbeans.com/]10.1.1.2'
-          # - '[/network.elcarpenter.com/]10.1.1.2'
-          # - '[/vpn.elcarpenter.com/]1.1.1.1'
-          # - '[/device.elcarpenter.com/]1.1.1.1'
-          # - '[/cluster.elcarpenter.com/]10.1.1.2'
-          # - '[/news-us.newsgroup.ninja/]8.8.8.8'
-          #- https://1.1.1.1/dns-query
-          #- https://1.0.0.1/dns-query
+          - '[/homielab.me/]10.100.10.232'
+          - 10.100.10.1
           bootstrap_dns:
-          #- 1.1.1.1:53
-          #- 1.0.0.1:53
-          - 1.1.1.1
+          #- 1.1.1.1
           all_servers: false
           fastest_addr: true
           allowed_clients: []
+          #- 10.100.10.0/24
+          #- 10.100.20.0/24
           disallowed_clients: []
           blocked_hosts: []
           cache_size: 4194304
@@ -180,21 +171,6 @@ spec:
         - '@@||r20.rs6.net^'
         dhcp:
           enabled: false
-        clients:
-        # available tags: https://github.com/AdguardTeam/AdGuardHome/wiki/Hosts-Blocklists#ctag
-        #- name: google-home-kitchendisplay
-        #  tags:
-        #  - os_android
-        #  - device_tablet
-        #  - user_child
-        #  ids:
-        #  - 10.30.50.114
-        #  use_global_settings: false
-        #  filtering_enabled: true
-        #  parental_enabled: true
-        #  safesearch_enabled: true
-        #  safebrowsing_enabled: true
-        #  use_global_blocked_services: true
         log_compress: false
         log_localtime: false
         log_max_backups: 0

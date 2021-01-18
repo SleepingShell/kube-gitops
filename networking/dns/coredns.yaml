@@ -29,7 +29,7 @@ spec:
       externalTrafficPolicy: Local
     servers:
     - zones:
-      - zone: in.sleepingshell.com.
+      - zone: homielab.me
         scheme: dns://
         # use_tcp: true
       port: 53
@@ -55,7 +55,7 @@ spec:
       - name: reload
       - name: loadbalance
       - name: etcd
-        parameters: in.sleepingshell.com
+        parameters: homielab.me
         configBlock: |-
           stubzones
           path /skydns
