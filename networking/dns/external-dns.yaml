@@ -20,7 +20,7 @@ spec:
     logLevel: debug
     provider: coredns
     coredns:
-      etcdEndpoints: http://etcd:2379
+      etcdEndpoints: http://etcd-dns:2379
     domainFilters:
     - homielab.me
     createSecret: true

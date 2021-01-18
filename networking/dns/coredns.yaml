@@ -59,7 +59,7 @@ spec:
         configBlock: |-
           stubzones
           path /skydns
-          endpoint http://etcd:2379
+          endpoint http://etcd-dns:2379
     #prometheus:
     #  service:
     #    enabled: true
