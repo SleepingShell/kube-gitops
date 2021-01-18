@@ -37,8 +37,9 @@ spec:
       annotations:
         #kubernetes.io/tls-acme: "true"
         #cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        external-dns.alpha.kubernetes.io/hostname: "adguard.homielab.me"
       hosts:
-      - adguard.in.homielab.me
+      - adguard.homielab.me
       #tls:
       #- hosts:
       #  - adguard.homielab.me
@@ -46,26 +47,30 @@ spec:
     service:
       type: LoadBalancer
       externalTrafficPolicy: Local
-      externalIPs:
-      - 10.100.10.235
+      loadBalancerIP: 10.100.10.235
+      annotations:
+        metallb.universe.tf/allow-shared-ip: adguard-home-svc
     serviceTCP:
       enabled: true
       externalTrafficPolicy: Local
       type: LoadBalancer
-      externalIPs:
-      - 10.100.10.235
+      loadBalancerIP: 10.100.10.235
+      annotations:
+        metallb.universe.tf/allow-shared-ip: adguard-home-svc
     serviceUDP:
       enabled: true
       externalTrafficPolicy: Local
       type: LoadBalancer
-      externalIPs:
-      - 10.100.10.235
+      loadBalancerIP: 10.100.10.235
+      annotations:
+        metallb.universe.tf/allow-shared-ip: adguard-home-svc
     serviceDNSOverTLS:
       enabled: true
       externalTrafficPolicy: Local
       type: LoadBalancer
-      externalIPs:
-      - 10.100.10.235
+      loadBalancerIP: 10.100.10.235
+      annotations:
+        metallb.universe.tf/allow-shared-ip: adguard-home-svc
     resources:
       requests:
         memory: 500Mi

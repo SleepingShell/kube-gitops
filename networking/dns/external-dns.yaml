@@ -23,6 +23,7 @@ spec:
       etcdEndpoints: http://etcd-dns:2379
     domainFilters:
     - homielab.me
+    - in.homielab.me
     createSecret: true
     crd:
       create: true
