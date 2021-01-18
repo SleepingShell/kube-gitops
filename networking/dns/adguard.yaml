@@ -9,7 +9,7 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: adguard
+      chart: adguard-home
       version: 2.2.0
       sourceRef:
         kind: HelmRepository
@@ -17,9 +17,9 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    image:
-      repository: adguard/adguardhome
-      tag: edge
+    #image:
+    #  repository: adguard/adguardhome
+    #  tag: edge
     persistence:
       config:
         enabled: false
