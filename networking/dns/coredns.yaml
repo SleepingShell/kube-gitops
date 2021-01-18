@@ -23,9 +23,9 @@ spec:
     isClusterService: false
     serviceType: LoadBalancer
     service:
-      externalIPs:
-      - 10.100.10.232
-      #loadBalancerIP: "10.100.10.231"
+      #externalIPs:
+      #- 10.100.10.232
+      loadBalancerIP: "10.100.10.232"
       externalTrafficPolicy: Local
     servers:
     - zones:

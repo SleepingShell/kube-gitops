@@ -2,7 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: traefik
-  namespace: traefik
+  namespace: networking
 spec:
   interval: 5m
   chart:
@@ -29,6 +29,11 @@ spec:
       #annotations: Make annotation for DNS
     addtionalArguments:
       - "--ping"
+    #  - "--providers.kubernetesingress.ingressendpoint.publishedservice=networking/traefik"
     service:
       externalIPs:
       - 10.100.10.230
+    providers:
+      kubernetesIngress:
+        publishedService:
+          enabled: true
