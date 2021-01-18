@@ -2,7 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: traefik
-  namespace: networking
+  namespace: traefik
 spec:
   interval: 5m
   chart:
@@ -27,6 +27,8 @@ spec:
       dashboard:
         enabled: true
       #annotations: Make annotation for DNS
+    addtionalArguments:
+      - "--ping"
     service:
       externalIPs:
       - 10.100.10.230
