@@ -6,6 +6,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m0s
+  ref:
+    branch: master
   secretRef:
     name: flux-system
   url: ssh://git@github.com/sleepingshell/kube-gitops
@@ -22,4 +24,4 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  validation: none
+  validation: client
