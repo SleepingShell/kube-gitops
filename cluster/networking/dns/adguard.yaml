@@ -110,7 +110,8 @@ spec:
           refuse_any: true
           upstream_dns:
           - '[/homielab.me/]10.100.10.232'
-          - 10.100.10.1
+          #- 10.100.10.1
+          - 84.200.69.80
           bootstrap_dns:
           #- 1.1.1.1
           all_servers: false
