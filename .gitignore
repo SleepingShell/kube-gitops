@@ -3,3 +3,4 @@ tests/
 INTERNAL.md
 TODO/
 setup/secrets/
+setup/.*
