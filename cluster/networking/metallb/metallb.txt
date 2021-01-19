@@ -1,0 +1,6 @@
+configInline:
+  address-pools:
+  - name: public
+    protocol: layer2
+    addresses:
+    - $METALLB_LOWER - $METALLB_UPPER

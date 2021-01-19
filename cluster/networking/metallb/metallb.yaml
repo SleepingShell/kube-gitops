@@ -30,9 +30,6 @@ spec:
         enabled: true
       prometheusRule:
         enabled: true
-    configInline:
-      address-pools:
-      - name: public
-        protocol: layer2
-        addresses:
-        - 10.100.10.230-10.100.10.239
+  valuesFrom:
+    - kind: Secret
+      name: metallb-helm-values
