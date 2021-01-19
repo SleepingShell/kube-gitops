@@ -1,0 +1,9 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: strip-ingress
+  namespace: networking
+spec:
+  stripPrefix:
+    prefixes:
+      - "[a-zA-Z0-9]+"

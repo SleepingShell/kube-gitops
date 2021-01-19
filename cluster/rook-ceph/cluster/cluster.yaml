@@ -1,0 +1,72 @@
+---
+apiVersion: ceph.rook.io/v1
+kind: CephCluster
+metadata:
+  name: rook-ceph
+  namespace: rook-ceph
+spec:
+  cephVersion:
+    image: ceph/ceph:v15.2
+  dataDirHostPath: /var/lib/rook
+  mon:
+    count: 3
+    allowMultiplePerNode: true
+  monitoring:
+    enabled: true
+  crashCollector:
+    disable: true
+  mgr:
+    modules:
+    - name: pg_autoscaler
+      enabled: true
+  dashboard:
+    enabled: true
+  resources:
+    api:
+      requests:
+          cpu: 25m
+          memory: 250Mi
+      limits:
+        memory: 1024Mi
+    mgr:
+      requests:
+          cpu: 50m
+          memory: 300Mi
+      limits:
+        memory: 1024Mi
+    mon:
+      requests:
+          cpu: 35m
+          memory: 800Mi
+      limits:
+        memory: 1024Mi
+    osd:
+      requests:
+        cpu: 200m
+        memory: 4096Mi
+      limits:
+        memory: 8192Mi
+    rbdmirror:
+      requests:
+          cpu: 25m
+          memory: 250Mi
+      limits:
+        memory: 1024Mi
+  storage:
+    nodes:
+      - name: "10.100.10.98"
+        devices:
+          - name: "/dev/hdd-12tb-1"
+          - name: "/dev/hdd-14tb-1"
+          - name: "/dev/hdd-14tb-2"
+          - name: "/dev/ssd-1tb-1"
+          - name: "/dev/ssd-1tb-2"
+          #- name: "/dev/nvme-1tb-2"
+    useAllNodes: false
+    useAllDevices: false
+    config:
+      metadataDevice: "nvme1n1"
+      #metadataDevice: "nvme-1tb-1"
+      osdsPerDevice: "1"
+      #walSizeMB: "20000" #I read that WAL is stored with DB if not specified
+      databaseSizeMB: "80000" 

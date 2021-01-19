@@ -1,0 +1,19 @@
+grafana:
+  adminPassword: "${GRAFANA_PASSWORD}"
+  ingress:
+    enabled: true
+    #annotations:
+    #  kubernetes.io/ingress.class: "external"
+    hosts:
+    - "grafana.$DOMAIN"
+    #tls:
+    #- hosts:
+    #  - "grafana.$DOMAIN"
+prometheus:
+  ingress:
+    enabled: true
+    hosts:
+    - "prometheus.$DOMAIN"
+    #tls:
+    #- hosts:
+    #  - "prometheus.$DOMAIN"

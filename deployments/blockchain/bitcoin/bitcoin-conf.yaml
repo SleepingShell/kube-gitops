@@ -1,8 +1,0 @@
-apiVersion: ricoberger.de/v1alpha1
-kind: VaultSecret
-metadata:
-  name: btc-conf
-  namespace: blockchain
-spec:
-  path: secrets/deployments/blockchain/bitcoin
-  type: Opaque

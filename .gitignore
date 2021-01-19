@@ -1,3 +1,5 @@
 .env
 tests/
 INTERNAL.md
+TODO/
+setup/secrets/

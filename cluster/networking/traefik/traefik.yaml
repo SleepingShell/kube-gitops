@@ -1,0 +1,39 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: traefik
+  namespace: networking
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: traefik
+      version: v9.12.3
+      sourceRef:
+        kind: HelmRepository
+        name: traefik-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    deployment:
+      kind: DaemonSet
+    logs:
+      general:
+        level: DEBUG
+    ingressClass:
+      enabled: true
+      isDefaultClass: true
+    ingressRoute:
+      dashboard:
+        enabled: true
+      #annotations: Make annotation for DNS
+    addtionalArguments:
+      - "--ping"
+    #  - "--providers.kubernetesingress.ingressendpoint.publishedservice=networking/traefik"
+    providers:
+      kubernetesIngress:
+        publishedService:
+          enabled: true
+  valuesFrom:
+    - kind: Secret
+      name: traefik-helm-values
