@@ -21,9 +21,6 @@ spec:
     provider: coredns
     coredns:
       etcdEndpoints: http://etcd-dns:2379
-    domainFilters:
-    - homielab.me
-    - in.homielab.me
     createSecret: true
     crd:
       create: true
@@ -37,3 +34,6 @@ spec:
         cpu: 25m
       limits:
         memory: 500Mi
+  valuesFrom:
+    - kind: Secret
+      name: external-dns-helm-values

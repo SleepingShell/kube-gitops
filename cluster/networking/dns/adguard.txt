@@ -1,0 +1,27 @@
+ingress:
+  enabled: true
+  annotations:
+    #kubernetes.io/tls-acme: "true"
+    #cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  hosts:
+  - adguard.$DOMAIN
+  #tls:
+  #- hosts:
+  #  - adguard.$DOMAIN
+  #  secretName: adguard-cert
+service:
+  loadBalancerIP: $ADGUARD_IP
+serviceTCP:
+  loadBalancerIP: $ADGUARD_IP
+serviceUDP:
+  loadBalancerIP: $ADGUARD_IP
+serviceDNSOverTLS:
+  loadBalancerIP: $ADGUARD_IP
+
+configAsCode:
+  config:
+    dns:
+    upstream_dns:
+    - '[/$DOMAIN/]$DOMAIN_DNS_IP'
+    #- $UPSTREAM_DNS_1
+    - $UPSTREAM_DNS_2
