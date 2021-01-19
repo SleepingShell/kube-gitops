@@ -6,8 +6,6 @@ REPO_ROOT=$(git rev-parse --show-toplevel)
 
 kubectl create namespace flux
 
-
-
 helm repo add fluxcd https://charts.fluxcd.io
 helm repo add cilium https://helm.cilium.io/
 helm repo update
@@ -42,13 +40,26 @@ if [ $FLUX_INSTALLED != 0 ]; then
 fi
 
 FLUX_READY=1
-  while [ $FLUX_READY != 0 ]; do
-    echo "waiting for flux pod to be fully ready..."
-    kubectl -n flux wait --for condition=available deployment/flux
-    FLUX_READY="$?"
-    sleep 5
-  done
-echo "Calling add-repo..."
+while [ $FLUX_READY != 0 ]; do
+  echo "waiting for flux pod to be fully ready..."
+  kubectl -n flux wait --for condition=available deployment/flux
+  FLUX_READY="$?"
+  sleep 5
+done
 
 #FLUX_KEY=$(kubectl -n flux logs deployment/flux | grep identity.pub | cut -d '"' -f2)
 #"$REPO_ROOT"/setup/add-repo-key.sh "$FLUX_KEY"
+
+SEALED_SECRETS_READY=1
+while [ $SEALED_SECRETS_READY != 0 ]; do
+  echo "waiting for flux pod to be fully ready..."
+  kubectl -n sealed-secrets wait --for condition=available deployment/flux
+  SEALED_SECRETS_READY="$?"
+  sleep 5
+done
+k -n kube-system wait --for condition=available deployment/sealed-secrets
+
+echo "Grabbing sealed-secrets public key and writing"
+kubeseal --controller-name sealed-secrets --fetch-cert > pub-cert.pem
+
+./bootstrap-secrets.sh
