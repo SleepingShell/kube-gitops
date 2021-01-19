@@ -54,7 +54,7 @@ spec:
         memory: 1024Mi
   storage:
     nodes:
-      - name: "10.100.10.98"
+      - name: "10.100.10.11"
         devices:
           - name: "/dev/hdd-12tb-1"
           - name: "/dev/hdd-14tb-1"
