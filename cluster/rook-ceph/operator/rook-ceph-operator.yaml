@@ -16,4 +16,4 @@ spec:
       interval: 5m
   values:
     csi:
-      cephfsGrpcMetricsPort: 9092 #Apparently port 9091 is in use already, but can't find by what
+      cephfsGrpcMetricsPort: 9092 #9091 is already used by Cilium/Hubble
