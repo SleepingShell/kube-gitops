@@ -114,6 +114,21 @@ spec:
             gnetId: 13165
             revision: 1
             datasource: Prometheus
+          #Ref: https://grafana.com/grafana/dashboards/13537
+          cilium-dashboard:
+            gnetId: 13537
+            revision: 1
+            datasource: Prometheus
+          #Ref: https://grafana.com/grafana/dashboards/13538
+          cilium-operator-dashboard:
+            gnetId: 13538
+            revision: 1
+            datasource: Prometheus
+          #Ref: https://grafana.com/grafana/dashboards/13539
+          hubble-dashboard:
+            gnetId: 13539
+            revision: 1
+            datasource: Prometheus
           #TODO: https://github.com/ebrianne/adguard-exporter (https://grafana.com/grafana/dashboards/13330 )
           # Ref: https://grafana.com/grafana/dashboards/11315
           #unifi-client-insights:
