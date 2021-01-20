@@ -29,6 +29,7 @@ spec:
       #annotations: Make annotation for DNS
     addtionalArguments:
       - "--ping"
+      - "--metrics.prometheus=true"
     #  - "--providers.kubernetesingress.ingressendpoint.publishedservice=networking/traefik"
     providers:
       kubernetesIngress:
