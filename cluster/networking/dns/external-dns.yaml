@@ -24,10 +24,10 @@ spec:
     createSecret: true
     crd:
       create: true
-    #metrics:
-    #  enabled: true
-    #  serviceMonitor:
-    #    enabled: true
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
     resources:
       requests:
         memory: 250Mi

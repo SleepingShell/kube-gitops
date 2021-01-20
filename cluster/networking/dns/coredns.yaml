@@ -21,11 +21,11 @@ spec:
       create: true
     replicaCount: 1
     isClusterService: false
-    #prometheus:
-    #  service:
-    #    enabled: true
-    #  monitor:
-    #    enabled: true
+    prometheus:
+      service:
+        enabled: true
+      monitor:
+        enabled: true
   valuesFrom:
     - kind: Secret
       name: coredns-helm-values
