@@ -2,14 +2,14 @@ ingress:
   enabled: true
   annotations:
     #kubernetes.io/tls-acme: "true"
-    #cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
     traefik.ingress.kubernetes.io/router.middlewares: networking-internal-only@kubernetescrd
   hosts:
   - adguard.$DOMAIN
-  #tls:
-  #- hosts:
-  #  - adguard.$DOMAIN
-  #  secretName: adguard-cert
+  tls:
+  - hosts:
+    - adguard.$DOMAIN
+    secretName: adguard-cert
 service:
   loadBalancerIP: $ADGUARD_IP
 serviceTCP:
