@@ -16,4 +16,5 @@ spec:
       interval: 5m
   values:
     csi:
+      rbdGrpcMetricsPort: 9093
       cephfsGrpcMetricsPort: 9092 #9091 is already used by Cilium/Hubble
