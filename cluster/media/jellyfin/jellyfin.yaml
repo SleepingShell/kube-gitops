@@ -1,0 +1,38 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: jellyfin
+  namespace: media
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: jellyfin
+      version: v4.3.1
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      tag: latest
+    timezone: America/New_York
+    persistence:
+      config:
+        enabled: true
+        size: 1Gi
+        storageClass: rook-ceph-block
+        skipuninstall: true
+      #media:
+      #  existingClaim: media-data
+      media:
+        enabled: true
+        existingClaim: jellyfin-media-nfs-mount
+      #extraExistingClaimMounts:
+      #  - name: transcode
+      #    mountPath: /transcode
+      #    existingClaim: media-transcode
+  valuesFrom:
+    - kind: Secret
+      name: jellyfin-helm-values

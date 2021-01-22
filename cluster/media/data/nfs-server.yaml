@@ -1,0 +1,44 @@
+apiVersion: nfs.rook.io/v1alpha1
+kind: NFSServer
+metadata:
+  name: media-nfs
+  namespace: media
+spec:
+  replicas: 1
+  exports:
+  - name: media
+    server:
+      accessMode: ReadWrite
+      squash: "all"
+      allowedClients:
+      - name: jellyfin
+        clients:
+        - jellyfin
+        accessMode: ReadOnly
+        squash: "all"
+    # A Persistent Volume Claim must be created before creating NFS CRD instance.
+    persistentVolumeClaim:
+      claimName: media-data
+  # A key/value list of annotations
+  annotations:
+    rook: nfs
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: media-nfs-lb
+  namespace: media
+spec:
+  selector:
+    app: media-nfs
+  ports:
+  - name: nfs
+    protocol: TCP
+    port: 2049
+    targetPort: 2049
+  - name: rpc
+    protocol: TCP
+    port: 111
+    targetPort: 111
+  type: LoadBalancer
+  loadBalancerIP: 10.100.10.17
