@@ -26,11 +26,12 @@ spec:
     ingressRoute:
       dashboard:
         enabled: true
-      #annotations: Make annotation for DNS
-    addtionalArguments:
+    additionalArguments:
       - "--ping"
       - "--metrics.prometheus=true"
-    #  - "--providers.kubernetesingress.ingressendpoint.publishedservice=networking/traefik"
+      - "--entrypoints.websecure.http.tls"
+      #- "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+      #- "--entrypoints.web.http.redirections.entryPoint.to=:443"
     providers:
       kubernetesIngress:
         publishedService:
