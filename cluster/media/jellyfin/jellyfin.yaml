@@ -28,7 +28,7 @@ spec:
       #  existingClaim: media-data
       media:
         enabled: true
-        existingClaim: jellyfin-media-nfs-mount
+        existingClaim: media-nfs-readonly
       #extraExistingClaimMounts:
       #  - name: transcode
       #    mountPath: /transcode
