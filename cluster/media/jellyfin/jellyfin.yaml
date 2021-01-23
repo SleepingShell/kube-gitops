@@ -22,7 +22,7 @@ spec:
       config:
         enabled: true
         size: 1Gi
-        storageClass: rook-ceph-block
+        storageClass: rook-ceph-ssd
         skipuninstall: true
       #media:
       #  existingClaim: media-data
