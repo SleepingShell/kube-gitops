@@ -24,27 +24,29 @@ spec:
   resources:
     api:
       requests:
-          cpu: 25m
+          cpu: 50m
           memory: 250Mi
       limits:
-        memory: 1024Mi
+        memory: 2048Mi
     mgr:
       requests:
-          cpu: 50m
-          memory: 300Mi
+        cpu: 250m
+        memory: 500Mi
       limits:
-        memory: 1024Mi
+        cpu: 500m
+        memory: 4096Mi
     mon:
       requests:
-          cpu: 35m
-          memory: 800Mi
+        cpu: 500m
+        memory: 2048Mi
       limits:
-        memory: 1024Mi
+        memory: 4096Mi
     osd:
       requests:
         cpu: 200m
         memory: 4096Mi
       limits:
+        cpu: 1500m
         memory: 8192Mi
     rbdmirror:
       requests:
