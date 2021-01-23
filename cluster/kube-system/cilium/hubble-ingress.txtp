@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: hubble-dashboard
+  namespace: kube-system
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: networking-internal-only@kubernetescrd
+spec:
+  #tls:
+  # - hosts:
+  #   - hubble.$DOMAIN
+  #   secretName: hubble-cert
+  rules:
+  - host: hubble.$DOMAIN
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: hubble-ui
+          servicePort: 80
