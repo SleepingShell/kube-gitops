@@ -1,3 +1,4 @@
 service:
   spec:
     loadBalancerIP: $INGRESS_IP
+    externalTrafficPolicy: Local

@@ -30,8 +30,10 @@ spec:
       - "--ping"
       - "--metrics.prometheus=true"
       - "--entrypoints.websecure.http.tls"
-      #- "--entrypoints.web.http.redirections.entrypoint.scheme=https"
-      #- "--entrypoints.web.http.redirections.entryPoint.to=:443"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+      - "--entrypoints.web.http.redirections.entryPoint.to=:443"
+    global:
+      sendAnonymousUsage: false
     providers:
       kubernetesIngress:
         publishedService:
