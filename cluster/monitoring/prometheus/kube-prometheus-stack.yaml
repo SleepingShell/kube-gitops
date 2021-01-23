@@ -233,13 +233,6 @@ spec:
           - node
           targetLabel: instance
     prometheus:
-      ingress:
-        enabled: true
-        hosts:
-        - "prometheus.homielab.me"
-        #tls:
-        #- hosts:
-        #  - "prometheus.homielab.me"
       prometheusSpec:
         podAntiAffinity: "hard"
         ruleSelector: {}
