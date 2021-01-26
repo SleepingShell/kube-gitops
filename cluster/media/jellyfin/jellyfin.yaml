@@ -24,15 +24,20 @@ spec:
         size: 1Gi
         storageClass: rook-ceph-ssd
         skipuninstall: true
-      #media:
-      #  existingClaim: media-data
       media:
         enabled: true
         existingClaim: media-nfs-readonly
+      transcode:
+        enabled: true
+        size: 30Gi
+        storageClass: rook-ceph-ssd
       #extraExistingClaimMounts:
       #  - name: transcode
       #    mountPath: /transcode
       #    existingClaim: media-transcode
+    requests:
+      limits:
+        nvidia.com/gpu: 1
   valuesFrom:
     - kind: Secret
       name: jellyfin-helm-values
