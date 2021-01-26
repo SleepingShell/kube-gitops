@@ -1,0 +1,41 @@
+addons:
+  vpn:
+    enabled: true
+    type: wireguard
+    env:
+      KILLSWITCH: "true"
+      KILLSWITCH_EXCLUDEDNETWORKS_IPV4: "$WG_TORRENT_EXCLUDE_IPS"
+    configFile: |-
+      [Interface]
+      PrivateKey = $WG_TORRENT_PRIVKEY
+      Address = $WG_TORRENT_ADDRESS
+      DNS = $WG_TORRENT_DNS
+      PostUp = /config/up.sh %i
+      PreDown = /config/down.sh %i
+
+      [Peer]
+      PublicKey = $WG_TORRENT_PUBKEY
+      AllowedIPs = 0.0.0.0/0
+      Endpoint = $WG_TORRENT_ENDPOINT
+    
+    scripts:
+      up: |-
+        #!/bin/bash
+        echo "connected" > /shared/vpnstatus
+
+      down: |-
+        #!/bin/bash
+        echo "disconnected" > /shared/vpnstatus
+
+ingress:
+  enabled: true
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: networking-internal-only@kubernetescrd
+  hosts:
+  - host: qb.$DOMAIN
+    paths:
+    - path: /
+      pathType: Prefix
+  tls:
+  - hosts:
+    - qb.$DOMAIN
