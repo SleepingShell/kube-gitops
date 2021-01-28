@@ -27,12 +27,14 @@ spec:
       media:
         enabled: true
         existingClaim: media-nfs-readonly
-      transcode:
-        enabled: true
-        size: 30Gi
-        storageClass: rook-ceph-ssd
-        accessMode: ReadWriteOnce
+    additionalVolumeMounts:
+      - name: transcode
         mountPath: /transcode
+    additionalVolumes:
+      - name: transcode
+        emptyDir:
+          medium: "Memory"
+          sizeLimit: "16Gi"
     env:
       LD_LIBRARY_PATH: /usr/local/nvidia/lib64
     resources:
