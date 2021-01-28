@@ -8,6 +8,7 @@ spec:
     storage: 1Mi
   accessModes:
     - ReadOnlyMany
+  persistentVolumeReclaimPolicy: Delete
   nfs:
     server: 10.100.10.17
     path: "/media-data"
