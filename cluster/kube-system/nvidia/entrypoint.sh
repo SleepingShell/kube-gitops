@@ -148,6 +148,13 @@ update_host_ld_cache() {
   echo "Updating host's ld cache... DONE."
 }
 
+# https://github.com/keylase/nvidia-patch
+patch_driver() {
+  echo "Patching driver to allow unlimited transcodes"
+  #curl -L -S -f "https://raw.githubusercontent.com/keylase/nvidia-patch/master/patch.sh" -o nvenc_patch.sh
+  bash /patch.sh
+}
+
 main() {
   if check_cached_version; then
     configure_cached_installation
@@ -161,6 +168,7 @@ main() {
     verify_nvidia_installation
   fi
   update_host_ld_cache
+  patch_driver
 }
 
 main "$@"

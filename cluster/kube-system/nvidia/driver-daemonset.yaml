@@ -37,7 +37,7 @@ spec:
           hostPath:
             path: /
       initContainers:
-        - image: sleepingshell/arch-nvidia-driver-installer:v1
+        - image: sleepingshell/arch-nvidia-driver-installer:1.1
           name: nvidia-driver-installer
           resources:
             requests:
