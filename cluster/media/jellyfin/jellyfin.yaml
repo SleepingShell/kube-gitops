@@ -33,9 +33,11 @@ spec:
         storageClass: rook-ceph-ssd
         accessMode: ReadWriteOnce
         mountPath: /transcode
-    #resources:
-    #  limits:
-    #    nvidia.com/gpu: 1
+    env:
+      LD_LIBRARY_PATH: /usr/local/nvidia/lib64
+    resources:
+      limits:
+        nvidia.com/gpu: 1
   valuesFrom:
     - kind: Secret
       name: jellyfin-helm-values
