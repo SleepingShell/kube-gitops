@@ -1,0 +1,1 @@
+postgresqlPassword: $NEXTCLOUD_DB_PASSWORD
