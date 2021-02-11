@@ -30,7 +30,6 @@ spec:
       - "--ping"
       - "--metrics.prometheus=true"
       - "--api.dashboard=true"
-      - "--api.insecure=true"
       - "--entrypoints.websecure.http.tls"
       - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
       - "--entrypoints.web.http.redirections.entryPoint.to=:443"
