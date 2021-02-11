@@ -1,0 +1,30 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-dashboard
+  namespace: networking
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`traefik.$DOMAIN`) #&& (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+    kind: Rule
+    services:
+    - name: api@internal
+      kind: TraefikService
+    middlewares:
+    - name: internal-only
+  #tls:
+  #  secretName: traefik-dashboard-cert
+---
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: traefik-dashboard
+  namespace: networking
+spec:
+  endpoints:
+  - dnsName: traefik.$DOMAIN
+    recordType: CNAME
+    targets:
+    - $DOMAIN
