@@ -1,0 +1,25 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: onlyoffice
+  namespace: home
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: home-forward@kubernetescrd
+spec:
+  rules:
+  - host: office.$DOMAIN
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: onlyoffice
+            port:
+              number: 80
+  tls:
+    - hosts:
+      - office.$DOMAIN
+      secretName: onlyoffice-tls
