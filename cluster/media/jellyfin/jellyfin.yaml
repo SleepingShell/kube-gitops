@@ -21,7 +21,7 @@ spec:
     persistence:
       config:
         enabled: true
-        size: 1Gi
+        size: 5Gi
         storageClass: rook-ceph-ssd
         skipuninstall: true
       media:
