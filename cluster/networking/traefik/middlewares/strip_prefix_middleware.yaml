@@ -4,6 +4,6 @@ metadata:
   name: strip-ingress
   namespace: networking
 spec:
-  stripPrefix:
-    prefixes:
-      - "[a-zA-Z0-9]+"
+  stripPrefixRegex:
+    regex:
+      - "/[a-zA-Z0-9]+"
