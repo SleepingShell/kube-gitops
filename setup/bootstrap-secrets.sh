@@ -50,10 +50,38 @@ fi
 
 #
 # Generic Secrets
+# These secrets are in simple key: value pairs
 #
 
-# shellcheck disable=SC2129
-printf "%s\n%s\n%s\n" "#" "# Auto-generated generic secrets -- DO NOT EDIT." "#" >> "${GENERATED_SECRETS}"
+txt=$(find "${REPO_ROOT}" -type f -name "*.txts")
+
+if [[ ( -n $txt ) ]];
+then
+    printf "%s\n%s\n%s\n" "#" "# Auto-generated generic secrets -- DO NOT EDIT." "#" >> "${GENERATED_SECRETS}"
+
+    for file in "${CLUSTER_ROOT}"/**/*.txts; do
+        secret_path="$(dirname "$file")/$(basename -s .txts "$file")"
+        secret_name=$(basename "${secret_path}")
+        deployment=${file#"${CLUSTER_ROOT}"}
+        # Get the namespace (based on folder path of manifest)
+        namespace=$(echo "${deployment}" | awk -F/ '{print $2}')
+        echo "[*] Generating secret '${secret_name}' in namespace '${namespace}'..."
+        str=''
+        output=$(envsubst < "$file")
+        while read p; do
+            readarray -d : -t arr <<< "$p"
+            key=${arr[0]}
+            val=${arr[1]}
+            val=$(echo -n $val | tr -d '\n')
+            str="$str --from-literal=$key=$val"
+        done <<< "$output"
+        kubectl -n ${namespace} create secret generic ${secret_name} \
+            $str --dry-run=client -o json |
+        kubeseal --format=yaml --cert="${PUB_CERT}" \
+            >>"${GENERATED_SECRETS}"
+        echo "---" >>"${GENERATED_SECRETS}"
+    done
+fi
 
 # Remove empty new-lines
 sed -i '/^[[:space:]]*$/d' "${GENERATED_SECRETS}"
