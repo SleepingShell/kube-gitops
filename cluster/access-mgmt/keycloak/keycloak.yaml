@@ -1,0 +1,35 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: keycloak
+  namespace: access-mgmt
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: keycloak
+      version: v2.1.2
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    service:
+      type: ClusterIP
+    proxyAddressForwarding: true
+    postgresql:
+      persistence:
+        existingClaim: keycloak-postgresql
+    metrics:
+      #enabled: true
+      serviceMonitor:
+        enabled: true
+        namespace: monitoring
+    resources:
+      limits:
+        memory: 2Gi
+        cpu: 1000m
+  valuesFrom:
+    - kind: Secret
+      name: keycloak-helm-values

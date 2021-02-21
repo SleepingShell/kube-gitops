@@ -1,0 +1,13 @@
+auth:
+  adminUser: admin
+  adminPassword: $KEYCLOAK_ADMIN_PASSWORD
+  managementPassword: $KEYCLOAK_MANAGEMENT_PASSWORD
+ingress:
+  enabled: true
+  hostname: auth.$DOMAIN
+  pathType: Prefix
+  tls: true
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+postgresql:
+  postgresqlPassword: $KEYCLOAK_POSTGRESQL_PASSWORD

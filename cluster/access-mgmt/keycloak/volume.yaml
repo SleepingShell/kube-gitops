@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: keycloak-postgresql
+  namespace: access-mgmt
+spec:
+  resources:
+    requests:
+      storage: 6Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: rook-ceph-ssd
