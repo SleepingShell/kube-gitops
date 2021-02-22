@@ -1,0 +1,24 @@
+authHost: oauth.$DOMAIN
+cookie:
+  domain: $DOMAIN
+providers:
+  oidc:
+    enabled: true
+    issuerUrl: $KEYCLOAK_OIDC_PROVIDER_URL
+    clientId: "forward-auth"
+    clientSecret: $TRAEFIK_OIDC_CLIENT_SECRET
+secret: $TRAEFIK_FORWARD_AUTH_SECRET
+ingress:
+  enabled: true
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  hosts:
+  - host: oauth.$DOMAIN
+    paths:
+    - /
+  tls:
+  - hosts:
+    - oauth.$DOMAIN
+    secretName: traefik-forward-auth-tls
