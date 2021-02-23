@@ -1,0 +1,20 @@
+auth:
+  oidcAuth:
+    enabled: true
+    providerURL: $KEYCLOAK_OIDC_PROVIDER_URL
+    redirectURL: https://k10.$DOMAIN
+    clientSecret: $K10_OIDC_CLIENT_SECRET
+  k10AdminUsers:
+  - $KEYCLOAK_OIDC_PROVIDER_URL#tyler
+ingress:
+  create: true
+  class: "traefik"
+  host: k10.$DOMAIN
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    traefik.ingress.kubernetes.io/router.middlewares: networking-internal-only@kubernetescrd
+  hosts:
+  - k10.$DOMAIN
+  tls:
+    enabled: true
+    secretName: k10-cert

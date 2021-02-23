@@ -1,0 +1,16 @@
+# Required as k10 creates a default deny all in the namespace it resides
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: minio-allow
+  namespace: backup
+spec:
+  policyTypes:
+  - Ingress
+  ingress:
+  - ports:
+    - port: 9000
+      protocol: TCP
+  podSelector:
+    matchLabels:
+      release: minio

@@ -4,7 +4,7 @@ metadata:
   name: minio-backup
 spec:
   capacity:
-    storage: 2000Gi
+    storage: 4000Gi
   volumeMode: Filesystem
   accessModes:
   - ReadWriteOnce
@@ -28,7 +28,7 @@ metadata:
 spec:
   resources:
     requests:
-      storage: 2000Gi
+      storage: 4000Gi
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
