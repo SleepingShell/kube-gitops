@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sia
+  namespace: blockchain
+spec:
+  selector:
+    matchLabels:
+      app: sia
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: sia
+    spec:
+      containers:
+      - name: sia
+        image: nebulouslabs/sia
+        env:
+          - name: SIA_API_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: sia
+                key: API_PASSWORD
+        volumeMounts:
+          - mountPath: /sia-data
+            name: data
+          - mountPath: /hosted/0
+            name: hosted
+        ports:
+        - containerPort: 9981
+          name: p2p
+        - containerPort: 9982
+          name: renter-host
+        - containerPort: 9983
+          name: rhp-v3
+        - containerPort: 9984
+          name: rhp-v3-ws
+        - containerPort: 9980
+          name: api-sensitive
+        resources:
+          limits:
+            memory: "8Gi"
+            cpu: "1500m"
+      - name: host-dashboard
+        image: siacentral/host-dashboard:latest
+        env:
+          - name: "SIA_API_ADDR"
+            value: "localhost:9980"
+        ports:
+          - containerPort: 8884
+            name: dashboard
+        resources:
+          limits:
+            memory: "1Gi"
+            cpu: "100m"
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: sia-data
+        - name: hosted
+          persistentVolumeClaim:
+            claimName: sia-hosted
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sia-host-dashboard
+  namespace: blockchain
+spec:
+  selector:
+    app: sia
+  ports:
+  - port: 8884
+    targetPort: dashboard
+    name: dashboard

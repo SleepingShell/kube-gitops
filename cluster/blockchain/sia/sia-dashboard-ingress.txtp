@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sia-dashboard
+  namespace: blockchain
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    traefik.ingress.kubernetes.io/router.middlewares: access-mgmt-forward-auth@kubernetescrd
+spec:
+  rules:
+  - host: sia.$DOMAIN
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: sia-host-dashboard
+            port:
+              number: 8884
+  tls:
+    - hosts:
+      - sia.$DOMAIN
+      secretName: sia-dashboard-cert
