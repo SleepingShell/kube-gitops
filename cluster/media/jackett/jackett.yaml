@@ -19,16 +19,17 @@ spec:
     controllerType: deployment
     image:
       repository: k8sathome/jackett
-      tag: v0.17.627
+      tag: v0.17.474
       pullPolicy: Always
     env:
       TZ: "America/New_York"
     persistence:
       config:
         enabled: true
-        storageClass: "rook-ceph-block-retain"
-        accessMode: ReadWriteOnce
-        size: "1Gi"
+        existingClaim: jackett-config
+        #storageClass: "rook-ceph-block-retain"
+        #accessMode: ReadWriteOnce
+        #size: "1Gi"
     #podAnnotations:
     #  backup.velero.io/backup-volumes: config
     resources:

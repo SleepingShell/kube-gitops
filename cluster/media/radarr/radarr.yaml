@@ -28,11 +28,10 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: "rook-ceph-block-retain"
-        accessMode: ReadWriteOnce
-        size: "25Gi"
-    #podAnnotations:
-    #  backup.velero.io/backup-volumes: config
+        existingClaim: radarr-config
+        #storageClass: "rook-ceph-block-retain"
+        #accessMode: ReadWriteOnce
+        #size: "25Gi"
     additionalVolumeMounts:
     - name: media-data
       mountPath: "/media"
@@ -43,9 +42,9 @@ spec:
     resources:
       requests:
         memory: 250Mi
-        cpu: 500m
       limits:
         memory: 1500Mi
+        cpu: 200m
   valuesFrom:
     - kind: Secret
       name: radarr-helm-values

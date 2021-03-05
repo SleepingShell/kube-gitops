@@ -18,8 +18,9 @@ spec:
   values:
     controllerType: deployment
     image:
-      #repository: ghcr.io/k8s-at-home/lidarr
-      repository: linuxserver/lidarr
+      repository: k8sathome/lidarr
+      tag: v0.8.0.2062
+      #repository: linuxserver/lidarr
       #tag: v0.8.0.2074
       pullPolicy: Always
     env:
@@ -27,9 +28,10 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: "rook-ceph-block-retain"
-        accessMode: ReadWriteOnce
-        size: "15Gi"
+        existingClaim: lidarr-config
+        #storageClass: "rook-ceph-block-retain"
+        #accessMode: ReadWriteOnce
+        #size: "15Gi"
     additionalVolumeMounts:
     - name: media-data
       mountPath: "/media"

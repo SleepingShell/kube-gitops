@@ -27,11 +27,10 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: "rook-ceph-block-retain"
-        accessMode: ReadWriteOnce
-        size: "25Gi"
-    #podAnnotations:
-    #  backup.velero.io/backup-volumes: config
+        #storageClass: "rook-ceph-block-retain"
+        #accessMode: ReadWriteOnce
+        #size: "25Gi"
+        existingClaim: sonarr-config
     additionalVolumeMounts:
     - name: media-data
       mountPath: "/media"
