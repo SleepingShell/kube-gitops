@@ -2,6 +2,7 @@ ingress:
   enabled: true
   annotations:
     traefik.ingress.kubernetes.io/router.middlewares: networking-internal-only@kubernetescrd
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
   hosts:
   - host: sonarr.$DOMAIN
     paths:
