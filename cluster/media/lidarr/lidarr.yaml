@@ -18,7 +18,8 @@ spec:
   values:
     controllerType: deployment
     image:
-      repository: ghcr.io/k8s-at-home/lidarr
+      #repository: ghcr.io/k8s-at-home/lidarr
+      repository: linuxserver/lidarr
       #tag: v0.8.0.2074
       pullPolicy: Always
     env:
