@@ -11,6 +11,7 @@ ingress:
   tls:
   - hosts:
     - "bazarr.$DOMAIN"
+    secretName: bazarr-cert
   additionalIngresses:
   - enabled: true
     nameSuffix: "api"
@@ -25,3 +26,4 @@ ingress:
     tls:
     - hosts:
       - "bazarr.$DOMAIN"
+      secretName: bazarr-cert
