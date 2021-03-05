@@ -18,9 +18,9 @@ spec:
   values:
     controllerType: deployment
     image:
-      #repository: k8sathome/sonarr
-      repository: linuxserver/sonarr
-      #tag: latest
+      repository: k8sathome/sonarr
+      #repository: linuxserver/sonarr
+      tag: latest
       pullPolicy: Always
     env:
       TZ: "America/New_York"

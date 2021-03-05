@@ -18,8 +18,9 @@ spec:
   values:
     controllerType: deployment
     image:
-      #repository: k8sathome/radarr
-      repository: linuxserver/radarr
+      repository: k8sathome/radarr
+      tag: latest
+      #repository: linuxserver/radarr
       #tag: latest
       pullPolicy: Always
     env:
