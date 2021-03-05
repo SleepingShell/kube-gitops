@@ -2,14 +2,14 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: sonarr
+  name: lidarr
   namespace: media
 spec:
   interval: 5m
   chart:
     spec:
-      chart: sonarr
-      version: 9.2.0
+      chart: lidarr
+      version: 7.2.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -18,9 +18,8 @@ spec:
   values:
     controllerType: deployment
     image:
-      #repository: k8sathome/sonarr
-      repository: linuxserver/sonarr
-      #tag: latest
+      repository: ghcr.io/k8s-at-home/lidarr
+      #tag: v0.8.0.2074
       pullPolicy: Always
     env:
       TZ: "America/New_York"
@@ -29,9 +28,7 @@ spec:
         enabled: true
         storageClass: "rook-ceph-block-retain"
         accessMode: ReadWriteOnce
-        size: "25Gi"
-    #podAnnotations:
-    #  backup.velero.io/backup-volumes: config
+        size: "15Gi"
     additionalVolumeMounts:
     - name: media-data
       mountPath: "/media"
@@ -41,10 +38,10 @@ spec:
         claimName: media-nfs-write
     resources:
       requests:
-        memory: 250Mi
-        cpu: 500m
+        memory: 100Mi
+        cpu: 200m
       limits:
-        memory: 1500Mi
+        memory: 1000Mi
   valuesFrom:
     - kind: Secret
-      name: sonarr-helm-values
+      name: lidarr-helm-values

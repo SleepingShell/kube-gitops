@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: jellyfin
-      version: v4.3.1
+      version: v5.1.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts

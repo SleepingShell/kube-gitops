@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: qbittorrent
-      version: 7.2.1
+      version: 8.1.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -19,8 +19,9 @@ spec:
   values:
     controllerType: deployment
     image:
+      # Keep for VPN
       repository: k8sathome/qbittorrent
-      tag: v4.3.1
+      tag: v4.3.3
       pullPolicy: Always
     env:
       TZ: "America/New_York"

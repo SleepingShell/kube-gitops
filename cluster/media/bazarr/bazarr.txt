@@ -4,23 +4,23 @@ ingress:
     traefik.ingress.kubernetes.io/router.middlewares: networking-internal-only@kubernetescrd
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
   hosts:
-  - host: radarr.$DOMAIN
+  - host: bazarr.$DOMAIN
     paths:
     - path: /
       pathType: Prefix
   tls:
   - hosts:
-    - "radarr.$DOMAIN"
+    - "bazarr.$DOMAIN"
   additionalIngresses:
   - enabled: true
     nameSuffix: "api"
     annotations:
       traefik.ingress.kubernetes.io/router.middlewares: networking-internal-only@kubernetescrd
     hosts:
-    - host: radarr.$DOMAIN
+    - host: bazarr.$DOMAIN
       paths:
       - path: /api
         pathType: Prefix
     tls:
     - hosts:
-      - "radarr.$DOMAIN"
+      - "bazarr.$DOMAIN"

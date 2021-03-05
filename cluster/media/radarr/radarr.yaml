@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: radarr
-      version: 8.3.1
+      version: 9.2.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -18,8 +18,9 @@ spec:
   values:
     controllerType: deployment
     image:
-      repository: k8sathome/radarr
-      tag: v3.0.2.4369
+      #repository: k8sathome/radarr
+      repository: linuxserver/radarr
+      #tag: latest
       pullPolicy: Always
     env:
       TZ: "America/New_York"

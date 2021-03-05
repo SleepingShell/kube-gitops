@@ -31,6 +31,7 @@ ingress:
   enabled: true
   annotations:
     traefik.ingress.kubernetes.io/router.middlewares: networking-internal-only@kubernetescrd
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
   hosts:
   - host: qb.$DOMAIN
     paths:
@@ -39,3 +40,4 @@ ingress:
   tls:
   - hosts:
     - qb.$DOMAIN
+    secretName: qb-cert

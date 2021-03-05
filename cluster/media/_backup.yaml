@@ -1,0 +1,46 @@
+apiVersion: config.kio.kasten.io/v1alpha1
+kind: Policy
+metadata:
+  name: media-backup
+  namespace: backup
+spec:
+  comment: "Media configs"
+  frequency: '@hourly'
+  retention:
+    hourly: 3
+    daily: 2
+  selector:
+    matchExpressions:
+    - key: k10.kasten.io/appNamespace
+      operator: In
+      values:
+      - media
+  actions:
+  - action: backup
+    backupParameters:
+      filters:
+        includeResources:
+        - resource: persistentvolumeclaims
+        - resource: certificates
+        - resource: certificaterequests
+        #- resource: secrets
+        #- resource: configmaps
+        #- resource: serviceaccounts
+        #- resource: sealedsecrets
+        #  group: bitnami.com
+        #  version: v1alpha1
+        excludeResources:
+        - name: media-data
+          resource: persistentvolumeclaims
+        - name: media-nfs-readonly
+          resource: persistentvolumeclaims
+        - name: media-nfs-write
+          resource: persistentvolumeclaims
+  - action: export
+    exportParameters:
+      frequency: '@daily'
+      profile:
+        name: minio-local
+        namespace: backup
+      exportData:
+        enabled: true
