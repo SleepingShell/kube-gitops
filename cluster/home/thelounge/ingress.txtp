@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: thelounge
+  namespace: home
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    #traefik.ingress.kubernetes.io/router.middlewares: access-mgmt-forward-auth@kubernetescrd
+spec:
+  rules:
+  - host: irc.$DOMAIN
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: thelounge
+            port:
+              name: http
+  tls:
+    - hosts:
+      - irc.$DOMAIN
+      secretName: thelounge-cert

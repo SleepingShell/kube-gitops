@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: thelounge
+  namespace: home
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: thelounge
+  template:
+    metadata:
+      labels:
+        app: thelounge
+    spec:
+      containers:
+      - name: thelounge
+        image: thelounge/thelounge:latest
+        ports:
+        - containerPort: 9000
+        volumeMounts:
+          - mountPath: /var/opt/thelounge
+            name: data
+          - mountPath: /shared
+            name: shared
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "250m"
+      - name: editor
+        image: alpine
+        command: ["sleep", "3600"]
+        volumeMounts:
+          - mountPath: /shared
+            name: shared
+        resources:
+          limits:
+            memory: "50Mi"
+            cpu: "10m"
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: thelounge-data
+        # In order to edit the config.js, I create this shared volume to edit it with the alpine sidecard
+        - name: shared
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: thelounge
+  namespace: home
+spec:
+  selector:
+    app: thelounge
+  ports:
+  - name: http
+    port: 9000
+    targetPort: 9000
