@@ -1,0 +1,9 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: jupyter-charts
+  namespace: flux-system
+spec:
+  interval: 15m
+  url: https://jupyterhub.github.io/helm-chart/
+  timeout: 3m

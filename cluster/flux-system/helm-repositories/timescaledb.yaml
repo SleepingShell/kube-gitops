@@ -1,0 +1,9 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: timescaledb-charts
+  namespace: flux-system
+spec:
+  interval: 15m
+  url: https://raw.githubusercontent.com/timescale/timescaledb-kubernetes/master/charts/repo/
+  timeout: 3m
