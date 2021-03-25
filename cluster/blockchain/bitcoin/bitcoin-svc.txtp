@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bitcoin-service
+  namespace: blockchain
+spec:
+  selector:
+    app: bitcoin
+  ports:
+  - name: p2p
+    port: 8333
+    targetPort: p2p
+  type: LoadBalancer
+  loadBalancerIP: $BITCOIN_NODE_IP

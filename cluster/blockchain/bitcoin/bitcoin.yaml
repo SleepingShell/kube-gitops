@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bitcoin
+  namespace: blockchain
+spec:
+  selector:
+    matchLabels:
+      app: bitcoin
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: bitcoin
+    spec:
+      containers:
+      - name: bitcoin
+        image: kylemanna/bitcoind
+        volumeMounts:
+        - mountPath: /bitcoin/data
+          name: bitcoin-data
+        env:
+          - name: RPCUSER
+            valueFrom:
+              secretKeyRef:
+                key: RPCUSER
+                name: bitcoin
+          - name: RPCPASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: RPCPASSWORD
+                name: bitcoin
+          - name: DISABLEWALLET
+            value: "1"
+          - name: PRINTTOCONSOLE
+            value: "1"
+        ports:
+        - name: p2p
+          containerPort: 8333
+        resources:
+          requests:
+              memory: "2048Mi"
+              cpu: "2000m"
+          limits:
+            memory: "4096Mi"
+            cpu: "2000m"
+      volumes:
+      - name: bitcoin-data
+        persistentVolumeClaim:
+          claimName: bitcoin-blockchain
