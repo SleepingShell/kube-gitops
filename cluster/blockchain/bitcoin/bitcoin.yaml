@@ -19,7 +19,7 @@ spec:
       - name: bitcoin
         image: kylemanna/bitcoind
         volumeMounts:
-        - mountPath: /bitcoin/data
+        - mountPath: /bitcoin/.bitcoin
           name: bitcoin-data
         env:
           - name: RPCUSER
