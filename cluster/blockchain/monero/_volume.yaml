@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: monero-blockchain
+  namespace: blockchain
+spec:
+  resources:
+    requests:
+      storage: 200Gi
+  storageClassName: rook-ceph-block
+  accessModes:
+    - ReadWriteOnce

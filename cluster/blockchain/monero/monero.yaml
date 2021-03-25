@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monero
+  namespace: blockchain
+spec:
+  selector:
+    matchLabels:
+      app: monero
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: monero
+    spec:
+      containers:
+      - name: monero
+        image: xmrto/monero
+        volumeMounts:
+        - mountPath: /home/monero/.bitmonero
+          name: monero-data
+        env:
+          - name: RPC_USER
+            valueFrom:
+              secretKeyRef:
+                key: RPCUSER
+                name: monero
+          - name: RPC_PASSWD
+            valueFrom:
+              secretKeyRef:
+                key: RPCPASSWORD
+                name: monero
+        ports:
+        - name: p2p
+          containerPort: 28080
+        - name: rpc
+          containerPort: 28081
+        resources:
+          requests:
+              memory: "1Gi"
+              cpu: "500m"
+          limits:
+            memory: "4Gi"
+            cpu: "1000m"
+      volumes:
+      - name: monero-data
+        persistentVolumeClaim:
+          claimName: monero-blockchain

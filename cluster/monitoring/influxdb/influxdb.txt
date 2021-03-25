@@ -1,0 +1,21 @@
+setDefaultUser:
+  enabled: true
+  user:
+    password: $INFLUX_ADMIN_PASSWORD
+env:
+  - name: INFLUXDB_DB
+    value: "pfsense"
+  - name: INFLUXDB_REPORTING_DISABLED
+    value: "true"
+  - name: INFLUXDB_USER
+    value: "pfsense"
+  - name: INFLUXDB_USER_PASSWORD
+    value: $INFLUX_PFSENSE_PASSWORD
+ingress:
+  enabled: true
+  hostname: influx.$DOMAIN
+  tls: enabled
+  secretName: influxdb-cert
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: networking-internal-only@kubernetescrd
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
