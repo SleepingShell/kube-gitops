@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack
-      version: 13.2.0
+      version: 14.3.0
       sourceRef:
         kind: HelmRepository
         name: prometheus-community-charts
@@ -127,6 +127,7 @@ spec:
             gnetId: 13539
             revision: 1
             datasource: Prometheus
+        network:
           #TODO: https://github.com/ebrianne/adguard-exporter (https://grafana.com/grafana/dashboards/13330 )
           # Ref: https://grafana.com/grafana/dashboards/11315
           unifi-client-insights:
@@ -143,6 +144,11 @@ spec:
             gnetId: 11314
             revision: 9
             datasource: Prometheus
+          # Ref: https://grafana.com/grafana/dashboards/12023
+          pfsense:
+            gnetId: 12023
+            revision: 1
+            datasource: Influxdb
         teslamate:
           charge-level:
             url: https://raw.githubusercontent.com/adriankumpf/teslamate/v1.21.2/grafana/dashboards/charge-level.json
@@ -193,7 +199,7 @@ spec:
             url: https://raw.githubusercontent.com/adriankumpf/teslamate/v1.21.2/grafana/dashboards/internal/charge-details.json
           drive-details:
             url: https://raw.githubusercontent.com/adriankumpf/teslamate/v1.21.2/grafana/dashboards/internal/drive-details.json
-      additionalDataSources:
+      #additionalDataSources:
       #- name: Prometheus
       #  type: prometheus
       #  access: proxy

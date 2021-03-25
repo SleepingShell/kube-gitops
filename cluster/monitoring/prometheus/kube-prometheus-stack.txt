@@ -1,5 +1,21 @@
 grafana:
   adminPassword: "${GRAFANA_PASSWORD}"
+  additionalDataSources:
+  - name: Influxdb
+    type: influxdb
+    url: http://influxdb:8086
+    database: pfsense
+    user: pfsense
+    password: $INFLUX_PFSENSE_PASSWORD
+  - name: TeslaMate
+    type: postgresql
+    url: teslamate-postgresql.home
+    database: teslamate
+    user: teslamate
+    secureJsonData:
+      password: $TESLAMATE_DB_PASSWORD
+    jsonData:
+      sslmode: "disable"
   ingress:
     enabled: true
     annotations:
