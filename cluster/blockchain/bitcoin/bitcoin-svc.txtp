@@ -11,5 +11,8 @@ spec:
   - name: p2p
     port: 8333
     targetPort: p2p
+  - name: zmq
+    port: 29000
+    targetPort: zmq
   type: LoadBalancer
   loadBalancerIP: $BITCOIN_NODE_IP

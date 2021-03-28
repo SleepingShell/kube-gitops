@@ -39,6 +39,8 @@ spec:
         ports:
         - name: p2p
           containerPort: 8333
+        - name: zmq
+          containerPort: 29000
         resources:
           requests:
               memory: "2048Mi"
