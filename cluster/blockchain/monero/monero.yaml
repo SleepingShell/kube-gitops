@@ -32,6 +32,8 @@ spec:
               secretKeyRef:
                 key: RPCPASSWORD
                 name: monero
+          - name: USE_TOR
+            value: "YES"
         ports:
         - name: p2p
           containerPort: 28080
