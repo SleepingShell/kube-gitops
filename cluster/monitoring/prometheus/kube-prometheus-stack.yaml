@@ -99,6 +99,16 @@ spec:
             allowUiUpdates: true
             options:
               path: /var/lib/grafana/dashboards/network
+          - name: blockchain
+            orgId: 1
+            folder: blockchain
+            type: file
+            disableDeletion: false
+            editable: true
+            isDefault: false
+            allowUiUpdates: true
+            options:
+              path: /var/lib/grafana/dashboards/blockchain
       dashboards:
         default:
           # Ref: https://grafana.com/grafana/dashboards/2842
@@ -159,6 +169,12 @@ spec:
             gnetId: 12023
             revision: 1
             datasource: Influxdb
+        blockchain:
+          # Ref: https://grafana.com/grafana/dashboards/12840
+          mina:
+            gnetId: 12840
+            revision: 2
+            datasource: Prometheus
         teslamate:
           charge-level:
             url: https://raw.githubusercontent.com/adriankumpf/teslamate/v1.21.2/grafana/dashboards/charge-level.json

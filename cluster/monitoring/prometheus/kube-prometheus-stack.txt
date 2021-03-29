@@ -8,7 +8,7 @@ grafana:
     user: pfsense
     password: $INFLUX_PFSENSE_PASSWORD
   - name: TeslaMate
-    type: postgresql
+    type: postgres
     url: teslamate-postgresql.home
     database: teslamate
     user: teslamate
