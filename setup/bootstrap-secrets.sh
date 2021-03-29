@@ -82,7 +82,6 @@ then
             $str --dry-run=client -o json |
         kubeseal --format=yaml --cert="${PUB_CERT}" \
             >>"${GENERATED_SECRETS}"
-        echo $str
         echo "---" >>"${GENERATED_SECRETS}"
     done
 fi
