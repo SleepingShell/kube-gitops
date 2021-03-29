@@ -53,6 +53,8 @@ fi
 # These secrets are in simple key: value pairs
 #
 
+function join { local IFS=""; shift; echo "$*"; }
+
 txt=$(find "${REPO_ROOT}" -type f -name "*.txts")
 
 if [[ ( -n $txt ) ]];
@@ -71,7 +73,8 @@ then
         while read p; do
             readarray -d : -t arr <<< "$p"
             key=${arr[0]}
-            val=${arr[1]}
+            #val=${arr[1]}
+            val=$(join ${arr[@]})
             val=$(echo -n $val | tr -d '\n')
             str="$str --from-literal=$key=$val"
         done <<< "$output"
@@ -79,6 +82,7 @@ then
             $str --dry-run=client -o json |
         kubeseal --format=yaml --cert="${PUB_CERT}" \
             >>"${GENERATED_SECRETS}"
+        echo $str
         echo "---" >>"${GENERATED_SECRETS}"
     done
 fi
