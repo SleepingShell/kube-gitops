@@ -225,16 +225,17 @@ spec:
             url: https://raw.githubusercontent.com/adriankumpf/teslamate/v1.21.2/grafana/dashboards/internal/charge-details.json
           drive-details:
             url: https://raw.githubusercontent.com/adriankumpf/teslamate/v1.21.2/grafana/dashboards/internal/drive-details.json
-      #additionalDataSources:
+      additionalDataSources:
+      - name: Loki
+        type: loki
+        access: proxy
+        url: http://loki:3100
       #- name: Prometheus
       #  type: prometheus
       #  access: proxy
       #  url: http://thanos-query-http:10902/
       #  isDefault: false
-      #- name: Loki
-      #  type: loki
-      #  access: proxy
-      #  url: http://loki:3100
+      
       grafana.ini:
         paths:
           data: /var/lib/grafana/data
