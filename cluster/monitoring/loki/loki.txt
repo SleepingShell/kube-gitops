@@ -1,0 +1,6 @@
+promtail:
+  syslogService:
+    enabled: true
+    type: LoadBalancer
+    port: 1514
+    loadBalancerIP: $SYSLOG_IP
