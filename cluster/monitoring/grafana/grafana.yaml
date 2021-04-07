@@ -84,19 +84,6 @@ spec:
           allowUiUpdates: true
           options:
             path: /var/lib/grafana/dashboards/blockchain
-    datasource:
-      datasources.yaml:
-        apiVersion: 1
-        datasources:
-        - name: Prometheus
-          type: prometheus
-          access: proxy
-          url: http://prometheus-operated:9090/
-          isDefault: true
-        - name: Loki
-          type: loki
-          access: proxy
-          url: http://loki:3100
     dashboards:
       default:
         # Ref: https://grafana.com/grafana/dashboards/2842
