@@ -50,7 +50,7 @@ spec:
         memory: 250Mi
         cpu: 500m
       limits:
-        memory: 5000Mi
+        memory: 8000Mi
   valuesFrom:
     - kind: Secret
       name: qbittorrent-helm-values
