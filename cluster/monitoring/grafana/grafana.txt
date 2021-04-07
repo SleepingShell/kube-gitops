@@ -1,0 +1,28 @@
+adminPassword: "${GRAFANA_PASSWORD}"
+additionalDataSources:
+- name: Influxdb
+  type: influxdb
+  url: http://influxdb:8086
+  database: pfsense
+  user: pfsense
+  password: $INFLUX_PFSENSE_PASSWORD
+- name: TeslaMate
+  type: postgres
+  url: teslamate-postgresql.home
+  database: teslamate
+  user: teslamate
+  secureJsonData:
+    password: $TESLAMATE_DB_PASSWORD
+  jsonData:
+    sslmode: "disable"
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    traefik.ingress.kubernetes.io/router.middlewares: networking-internal-only@kubernetescrd
+  hosts:
+  - "grafana.$DOMAIN"
+  tls:
+  - hosts:
+    - "grafana.$DOMAIN"
+    secretName: prom-grafana-cert
