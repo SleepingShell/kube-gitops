@@ -274,7 +274,7 @@ spec:
         podMonitorSelector: {}
         podMonitorNamespaceSelector: {}
         podMonitorSelectorNilUsesHelmValues: false
-        retention: 24h
+        retention: 672h
         enableAdminAPI: true
         walCompression: true
         storageSpec:
@@ -283,20 +283,13 @@ spec:
               storageClassName: "rook-ceph-block"
               resources:
                 requests:
-                  storage: 10Gi
+                  storage: 50Gi
         #thanos:
         #  image: quay.io/thanos/thanos:v0.17.2
         #  version: v0.17.2
           #objectStorageConfig:
           #  name: thanos
           #  key: object-store.yaml
-        #additionalScrapeConfigs:
-        #- job_name: 'node-exporter'
-        #  static_configs:
-        #  - targets:
-        #    - 192.168.1.1:9100
-        #    - 192.168.1.39:9100
-        #    - 192.168.1.40:9100
   valuesFrom:
     - kind: Secret
       name: kube-prometheus-stack-helm-values
