@@ -1,0 +1,16 @@
+service:
+  type: LoadBalancer
+  loadBalancerIP: $HASS_IP
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    traefik.ingress.kubernetes.io/router.middlewares: networking-internal-only@kubernetescrd
+  hosts:
+  - host: hass.$DOMAIN
+    paths:
+    - path: /
+      pathType: Prefix
+  tls:
+  - hosts:
+    - "hass.$DOMAIN"
