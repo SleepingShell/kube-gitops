@@ -47,7 +47,7 @@ spec:
         claimName: media-nfs-write
     resources:
       requests:
-        memory: 250Mi
+        memory: 3000Mi
         cpu: 500m
       limits:
         memory: 8000Mi
