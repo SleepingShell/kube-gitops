@@ -65,7 +65,7 @@ spec:
           - name: "/dev/hdd-14tb-2"
           - name: "/dev/ssd-1tb-1"
           - name: "/dev/ssd-1tb-2"
-          - name: "/dev/nvme2n1"
+         # - name: "/dev/nvme2n1"
         #  - name: "/dev/nvme2n1" #TODO: Change this to symlink when it's working
     useAllNodes: false
     useAllDevices: false
