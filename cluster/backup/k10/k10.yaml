@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: k10
-      version: 3.0.8
+      version: 3.0.13
       sourceRef:
         kind: HelmRepository
         name: kasten-charts
@@ -35,10 +35,7 @@ spec:
         cpu: 20m
       limits:
         memory: 2Gi
-        cpu: 500m
+        cpu: 1000m
   valuesFrom: 
     - kind: Secret
       name: "k10-helm-values"
-
-# https://openidconnect.net/
-# https://oidcdebugger.com/
