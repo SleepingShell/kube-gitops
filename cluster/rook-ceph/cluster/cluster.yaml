@@ -60,7 +60,10 @@ spec:
       - name: "10.100.10.11"
         devices:
           - name: "/dev/hdd-12tb-1"
-          #- name: "/dev/hdd-12tb-2"
+          - name: "/dev/hdd-12tb-2"
+            config:
+              metadataDevice: ""
+              databaseSizeMB:
           #- name: "/dev/hdd-12tb-3"
           - name: "/dev/hdd-14tb-1"
           - name: "/dev/hdd-14tb-2"
@@ -71,8 +74,8 @@ spec:
     useAllNodes: false
     useAllDevices: false
     config:
-      metadataDevice: "nvme1n1"
-      #metadataDevice: "nvme-1tb-1"
+      #metadataDevice: "nvme2n1"
+      metadataDevice: "nvme-1tb-1"
       osdsPerDevice: "1"
       #walSizeMB: "20000" #I read that WAL is stored with DB if not specified
       databaseSizeMB: "80000" 
