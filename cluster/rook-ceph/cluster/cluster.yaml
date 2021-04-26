@@ -60,10 +60,10 @@ spec:
       - name: "10.100.10.11"
         devices:
           - name: "/dev/hdd-12tb-1"
-          - name: "/dev/hdd-12tb-2"
-            config:
-              metadataDevice: ""
-              databaseSizeMB:
+          #- name: "/dev/hdd-12tb-2"
+          #  config:
+          #    metadataDevice: ""
+          #    databaseSizeMB: "0"
           #- name: "/dev/hdd-12tb-3"
           - name: "/dev/hdd-14tb-1"
           - name: "/dev/hdd-14tb-2"
