@@ -9,6 +9,7 @@ spec:
     #image: ceph/ceph:v16.2
     image: ceph/ceph:v15.2.11
   dataDirHostPath: /var/lib/rook
+  skipUpgradeChecks: true
   mon:
     count: 3
     allowMultiplePerNode: true
