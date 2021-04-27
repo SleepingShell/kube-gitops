@@ -79,4 +79,8 @@ spec:
       metadataDevice: "nvme-1tb-1"
       osdsPerDevice: "1"
       #walSizeMB: "20000" #I read that WAL is stored with DB if not specified
-      databaseSizeMB: "80000" 
+      databaseSizeMB: "80000"
+  healthCheck:
+    livenessProbe:
+      mgr:
+        disabled: true
