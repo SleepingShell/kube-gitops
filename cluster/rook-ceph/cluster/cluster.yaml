@@ -14,7 +14,7 @@ spec:
     count: 3
     allowMultiplePerNode: true
   monitoring:
-    enabled: true
+    enabled: false
   crashCollector:
     disable: true
   mgr:
@@ -22,7 +22,7 @@ spec:
     - name: pg_autoscaler
       enabled: true
   dashboard:
-    enabled: true
+    enabled: false
   resources:
     api:
       requests:
