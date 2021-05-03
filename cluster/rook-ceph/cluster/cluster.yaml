@@ -14,7 +14,7 @@ spec:
     count: 3
     allowMultiplePerNode: true
   monitoring:
-    enabled: true
+    enabled: false
   crashCollector:
     disable: true
   mgr:
@@ -80,7 +80,7 @@ spec:
       osdsPerDevice: "1"
       #walSizeMB: "20000" #I read that WAL is stored with DB if not specified
       databaseSizeMB: "80000"
-  #healthCheck:
-  #  livenessProbe:
-  #    mgr:
-  #      disabled: true
+  healthCheck:
+    livenessProbe:
+      mgr:
+        disabled: true
